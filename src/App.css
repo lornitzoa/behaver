@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css?family=Slackey&display=swap');
+
+:root {
+  --accent-teal: rgb(6, 159, 186);
+  --btn-hover: rgb(244, 166, 63);
+}
+
+* {
+  text-align: center;
+  font-family: 'Verdana';
+}
+
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.sub-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25px;
+  color: white;
+  background-color: var(--accent-teal);
+}
+
+.sub-header > button {
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: var(--btn-hover);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+h1 {
+  margin: 0;
+}
+
+.access-header {
+  margin-top: 15px;
+}
+
+.access-nav {
+  display: flex;
+  justify-content: center;
+}
+
+#access-header-or {
+  width: 100px;
+}
+
+.access-h1 {
+  text-decoration: none;
+  width: 200px;
+  padding: 10px;
+  color: var(--accent-teal);
+  /* border-bottom: none; */
+}
+
+.access-h1:hover {
+  color: var(--btn-hover);
+}
+
+.active {
+  font-weight: bold;
+  color: white;
+  background-color: var(--accent-teal);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 10px;
+  /* border-bottom: none; */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 650px;
+  margin: auto;
+  padding-top: 30px;
+  background-color: var(--accent-teal);
+  border-radius: 20px;
+}
+
+.input-div {
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
+  vertical-align: middle;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.form-label {
+  width: 225px;
+  height: 50px;
+  margin: 15px;
+  padding: 5px;
+  text-align: right;
+}
+
+input[type=text], input[type=password] {
+  width: 300px;
+  height: 25px;
+  margin: 15px 0;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+input[type=submit] {
+  width: 200px;
+  height: 40px;
+  font-size: 24px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+input[type=submit]:hover {
+  background-color: var(--btn-hover);
+  border-radius: none;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+}
+
+.nav-link {
+  color: black;
+}
+
+.active-nav {
+  color: blue;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
