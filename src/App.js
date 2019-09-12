@@ -17,7 +17,7 @@ import Main from './components/Main'
 import AuthService from './services/user.services'
 
 // api connection
-const api_url = 'http://localhost:3000/'
+const api_url = 'https://bhvr-api.herokuapp.com'
 
 
 // auth function
