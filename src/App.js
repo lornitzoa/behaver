@@ -14,6 +14,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Main from './components/Main'
 
+import AuthService from './services/user.services'
+
 // api connection
 const api_url = 'http://localhost:3000/'
 
@@ -26,6 +28,8 @@ const auth = {
     setTimeout(cb, 100)
   },
   signout(cb) {
+    this.Auth = new AuthService()
+    this.Auth.logout()
     this.isAuthenticated = false
     setTimeout(cb, 100)
   }
@@ -34,15 +38,28 @@ const auth = {
 // login and register landing component
 
 class Access extends React.Component {
-  state = {
-    redirectToReferrer: false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      redirectToReferrer: false,
+    }
+    this.Auth = new AuthService()
   }
-  login = () => {
-    auth.authenticate(() => {
-      this.setState(() => ({
-        redirectToReferrer: true
-      }))
-    })
+
+  login = (username, password) => {
+    this.Auth.login(username, password)
+      .then(res => {
+        console.log(res)
+        auth.isAuthenticated = true
+        auth.authenticate(() => {
+          this.setState(() => ({
+            redirectToReferrer: true
+          }))
+        })
+      },
+      err => console.log(err)
+    )
+
   }
   render() {
     const { from } = this.props.location || { from: { pathname: '/' } }

@@ -6,14 +6,25 @@ import '../App.css';
 
 
 class Login extends Component {
-
-  state = {
-    redirectToReferrer: false
+  constructor(props) {
+    super(props)
+    this.state = {
+      redirectToReferrer: false,
+      familyname: '',
+      password: ''
+    }
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.login()
+    this.props.login(this.state.familyName, this.state.password)
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  
   }
 
   render() {

@@ -4,15 +4,40 @@ import { Redirect } from 'react-router-dom'
 // import history from '../history'
 import PinInput from 'react-pin-input'
 
+import AuthService from '../services/user.services'
+
 class Register extends Component {
-  state = {
-    redirectToReferrer: false
+  constructor(props) {
+    super(props)
+    this.state = {
+      redirectToReferrer: false,
+      familyName: '',
+      password: ''
+    }
+    this.Auth = new AuthService()
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
+    if(this.state.familyName && this.state.password) {
+      let user = {
+        username: this.state.familyName,
+        password: this.state.password
+      }
+      this.Auth.register(user)
+        .then(
+          res => {
+            this.setState({
+              redirectToReferrer: true
+            })
+          }
+        )
+    }
+  }
+
+  handleChange = (e) => {
     this.setState({
-      redirectToReferrer: true
+      [e.target.id]: e.target.value
     })
   }
 
