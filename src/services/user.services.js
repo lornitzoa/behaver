@@ -2,7 +2,7 @@ import decode from 'jwt-decode'
 
 export default class AuthService {
   constructor(domain) {
-    this.domain = 'http://localhost:3000' // API server domain
+    this.domain = 'https://bhvr-api.herokuapp.com' // API server domain
     this.fetch = this.fetch.bind(this) // React binding
     this.login = this.login.bind(this)
     this.getProfile = this.getProfile.bind(this)
@@ -32,7 +32,7 @@ export default class AuthService {
   }
 
   register(user) {
-    return this.fetch('http://localhost:3000/users/register',
+    return this.fetch(`${this.domain}/users/register`,
     {
       body: JSON.stringify(user),
       method: 'POST'
