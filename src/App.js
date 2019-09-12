@@ -8,10 +8,17 @@ import {
   withRouter
 } from 'react-router-dom'
 
+import axios from 'axios'
+
 import Login from './components/Login'
 import Register from './components/Register'
 import Main from './components/Main'
 
+// api connection
+const api_url = 'http://localhost:3000/'
+
+
+// auth function
 const auth = {
   isAuthenticated: false,
   authenticate(cb) {
@@ -23,6 +30,8 @@ const auth = {
     setTimeout(cb, 100)
   }
 }
+
+// login and register landing component
 
 class Access extends React.Component {
   state = {
@@ -78,6 +87,8 @@ class Access extends React.Component {
   }
 }
 
+// private route component
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     auth.isAuthenticated === true
@@ -88,6 +99,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         }} />
   )} />
 )
+
+
+// authorization access component
 
 const AuthButton = withRouter(({ history }) => (
   auth.isAuthenticated ? (
@@ -102,7 +116,9 @@ const AuthButton = withRouter(({ history }) => (
   )
 ))
 
-export default function AuthExample () {
+
+// main app component
+export default function App () {
   return (
     <Router>
       <div>
