@@ -17,22 +17,23 @@ import Main from './components/Main'
 import AuthService from './services/user.services'
 
 // api connection
-const api_url = 'https://bhvr-api.herokuapp.com'
+const api_url = 'https://behaver-api.herokuapp.com'
 
 
 // auth function
 const auth = {
   isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.Auth = new AuthService()
-    this.Auth.logout()
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
+  // authenticate(cb) {
+  //   this.isAuthenticated = true
+  //   setTimeout(cb, 100)
+  //   console.log(this.isAuthenticated);
+  // },
+  // signout(cb) {
+  //   this.Auth = new AuthService()
+  //   this.Auth.logout()
+  //   this.isAuthenticated = false
+  //   // setTimeout(cb, 100)
+  // }
 }
 
 // login and register landing component
@@ -51,11 +52,11 @@ class Access extends React.Component {
       .then(res => {
         console.log(res)
         auth.isAuthenticated = true
-        auth.authenticate(() => {
+        // auth.authenticate(() => {
           this.setState(() => ({
             redirectToReferrer: true
           }))
-        })
+        // })
       },
       err => console.log(err)
     )
