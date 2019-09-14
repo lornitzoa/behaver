@@ -1,20 +1,22 @@
-import React, {Component} from 'react';
-import '../App.css';
+import React, {Component} from 'react'
 import {BrowserRouter as Router, Route, NavLink, Redirect, withRouter} from 'react-router-dom'
 import history from '../history'
 
+import '../App.css'
 import AuthService from '../services/user.services'
+
 
 class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      familyName: localStorage.username,
+      familyName: localStorage.username, // for dashboard header
       redirectToReferrer: false
     }
     this.Auth = new AuthService()
   }
 
+  // triggers logout function and redirects to access page
   logout = (cb) => {
     this.Auth.logout()
     this.setState({
@@ -22,7 +24,6 @@ class Main extends Component {
     })
 
   }
-
 
 
   render() {

@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import '../App.css';
+import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
-// import history from '../history'
 import PinInput from 'react-pin-input'
 
+import '../App.css'
 import AuthService from '../services/user.services'
+
 
 class Register extends Component {
   constructor(props) {
@@ -17,6 +17,7 @@ class Register extends Component {
     this.Auth = new AuthService()
   }
 
+  // triggers registration functions and redirects to login component
   handleSubmit = (e) => {
     e.preventDefault()
     if(this.state.familyName && this.state.password) {
@@ -35,6 +36,7 @@ class Register extends Component {
     }
   }
 
+  // collects text from input cells
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value

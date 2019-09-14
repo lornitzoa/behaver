@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import '../App.css';
-// import {BrowserRouter as Router, Route, Link, Redirect, withRouter} from 'react-router-dom'
-// import history from '../history'
-
 
 
 class Login extends Component {
@@ -15,20 +12,21 @@ class Login extends Component {
     }
   }
 
+  // triggers login function
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.login(this.state.familyName, this.state.password)
   }
 
+  // collects text from iput cells
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
     })
-  
+
   }
 
   render() {
-
     return(
       <div className='access-form'>
         <form onSubmit={this.handleSubmit}>

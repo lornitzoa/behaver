@@ -9,7 +9,7 @@ export default class AuthService {
   }
 
   login(username, password) {
-    console.log(username);
+    // console.log(username);
     return this.fetch(
       `${this.domain}/users/login?user[username]=${username}&user[password]=${password}`,
        {
@@ -19,7 +19,7 @@ export default class AuthService {
            password
          })
        }).then(res => {
-         console.log(res)
+         // console.log(res)
          this.setLocalStorage(res.token, res.user.username, res.user.id) // set token in localStorage
          return Promise.resolve(res)
        })
@@ -72,7 +72,7 @@ export default class AuthService {
     localStorage.removeItem('id_token')
     localStorage.removeItem('username')
     localStorage.removeItem('family_id')
-    console.log('logging out');
+    // console.log('logging out');
   }
 
   getProfile() {
@@ -81,8 +81,8 @@ export default class AuthService {
   }
 
   fetch(url, options) {
-    console.log(url)
-    console.log(options)
+    // console.log(url)
+    // console.log(options)
 
     // Perform API call sending required authentication headers
     const headers = {
@@ -94,7 +94,7 @@ export default class AuthService {
     if (this.loggedIn()) {
       headers['authorization'] = 'Bearer ' + this.getToken()
     }
-    console.log(headers)
+    // console.log(headers)
     return fetch(url, {
       headers,
       ...options

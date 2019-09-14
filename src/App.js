@@ -13,31 +13,17 @@ import axios from 'axios'
 import Login from './components/Login'
 import Register from './components/Register'
 import Main from './components/Main'
-
 import AuthService from './services/user.services'
 
 // api connection
 const api_url = 'https://behaver-api.herokuapp.com'
 
 
-// auth function
-const auth = {
-  isAuthenticated: false,
-  // authenticate(cb) {
-  //   this.isAuthenticated = true
-  //   setTimeout(cb, 100)
-  //   console.log(this.isAuthenticated);
-  // },
-  // signout(cb) {
-  //   this.Auth = new AuthService()
-  //   this.Auth.logout()
-  //   this.isAuthenticated = false
-  //   // setTimeout(cb, 100)
-  // }
-}
+// authorization variable
+let isAuthenticated = false
 
-// login and register landing component
 
+// login and register landing component, with login function
 class Access extends React.Component {
   constructor(props) {
     super(props)
@@ -50,13 +36,11 @@ class Access extends React.Component {
   login = (username, password) => {
     this.Auth.login(username, password)
       .then(res => {
-        console.log(res)
-        auth.isAuthenticated = true
-        // auth.authenticate(() => {
-          this.setState(() => ({
-            redirectToReferrer: true
-          }))
-        // })
+        // console.log(res)
+        isAuthenticated = true
+        this.setState(() => ({
+          redirectToReferrer: true
+        }))
       },
       err => console.log(err)
     )
@@ -98,7 +82,10 @@ class Access extends React.Component {
             <h1>Register</h1>
           </NavLink>
         </div>
-        <Route path='/login' component={() => <Login login={this.login} /> } />
+        <Route path='/login' component={() =>
+            <Login login={this.login} />
+          }
+        />
         <Route path='/register' component={Register}/>
         <PrivateRoute path='/main' component={Main}/>
       </Router>
@@ -106,11 +93,10 @@ class Access extends React.Component {
   }
 }
 
-// private route component
-
+// private route component prevents access to  main app without authorization
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    auth.isAuthenticated === true
+    isAuthenticated === true
       ? <Component {...props} />
       : <Redirect to={{
           pathname: '/login',
@@ -120,18 +106,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 
-// authorization access component
-
+// checks for authorization and renders appropriate components based on login credentials
 const AuthButton = withRouter(({ history }) => (
   localStorage.getItem('id_token') ? (
     <div>
-      <Main
-        auth={auth}
-        history={history}
-      />
+      <Main />
     </div>
   ) : (
-    <Access/>
+    <Access />
   )
 ))
 
