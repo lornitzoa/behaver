@@ -60,8 +60,9 @@ class Access extends React.Component {
       },
       err => console.log(err)
     )
-
   }
+
+
   render() {
     const { from } = this.props.location || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state
@@ -97,7 +98,7 @@ class Access extends React.Component {
             <h1>Register</h1>
           </NavLink>
         </div>
-        <Route path='/login' component={() => <Login login={this.login}/>}/>
+        <Route path='/login' component={() => <Login login={this.login} /> } />
         <Route path='/register' component={Register}/>
         <PrivateRoute path='/main' component={Main}/>
       </Router>
@@ -122,7 +123,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 // authorization access component
 
 const AuthButton = withRouter(({ history }) => (
-  auth.isAuthenticated ? (
+  localStorage.getItem('id_token') ? (
     <div>
       <Main
         auth={auth}
