@@ -11,6 +11,9 @@ import Dashboard from './Dashboard'
 // api connection
 const api_url = 'https://behaver-api.herokuapp.com'
 
+
+
+
 class Main extends Component {
   constructor(props) {
     super(props)
@@ -25,9 +28,27 @@ class Main extends Component {
       reinforcements: [],
       reinforcementsassignments: [],
       scores: [],
+      members: []
 
     }
     this.Auth = new AuthService()
+    this.familyID = parseInt(localStorage.getItem('family_id'))
+  }
+
+  //////////////////////////////////////////////
+  //               GET DATA
+  //////////////////////////////////////////////
+  getData = (dataType) => {
+    axios.get(`${api_url}/${dataType}/${this.familyID}`)
+      .then(json => {
+        return json.data
+      })
+      .then(data => {
+        // let array = dataType.replace('/', '')
+        this.setState({
+          [dataType]: data
+        })
+      })
   }
 
   // triggers logout function and redirects to access page
@@ -36,7 +57,10 @@ class Main extends Component {
     this.setState({
       redirectToReferrer: true
     })
+  }
 
+  componentDidMount() {
+    this.getData('members')
   }
 
 
@@ -83,7 +107,11 @@ class Main extends Component {
           </NavLink>
         </div>
         <Switch>
-          <Route path='/dashboard' component={Dashboard}/>
+          <Route
+            path='/dashboard'
+            component={() =>
+              <Dashboard children={this.state.members.filter(member => member.role.includes('child'))}/>
+            }/>
           <Route path='/tasksbehaviors'/>
           <Route path='/cashins'/>
           <Route path='/household'/>

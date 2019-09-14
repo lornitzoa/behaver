@@ -153,7 +153,7 @@ input[type=submit]:hover {
 
 .main-nav-h1 {
   text-decoration: none;
-  /* width: 200px; */
+  font-size: 26px;
   padding: 10px;
   color: var(--accent-teal);
   /* border-bottom: none; */
@@ -170,27 +170,29 @@ input[type=submit]:hover {
   color: var(--btn-hover);
 }
 
-/* .nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
+/* Dashboard Table */
+
+table {
+  width: 90%;
   margin: auto;
+  padding-top: 75px;
+  background-color: var(--accent-teal);
+  color: white;
+  border-radius: 20px;
+  text-align: center;
 }
 
-.nav-link {
-  color: black;
-} */
+th {
+  font-size: 32px;
+}
 
-/* .active-nav {
-  color: blue;
-} */
+td, th {
+  font-size: 36px;
+  padding: 20px 0;
+  font-weight: bold;
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.childName:hover {
+  color: var(--btn-hover);
+  cursor: pointer;
 }
