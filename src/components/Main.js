@@ -10,8 +10,17 @@ class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      familyName: localStorage.username, // for dashboard header
-      redirectToReferrer: false
+      // for dashboard header
+      familyName: localStorage.username,
+      redirectToReferrer: false,
+      // data arrays
+      behaviors: [],
+      tasksassignments: [],
+      behaviorsassignments:[],
+      reinforcements: [],
+      reinforcementsassignments: [],
+      scores: [],
+
     }
     this.Auth = new AuthService()
   }

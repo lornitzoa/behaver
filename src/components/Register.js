@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
-import PinInput from 'react-pin-input'
 
 import '../App.css'
 import AuthService from '../services/user.services'
