@@ -72,6 +72,7 @@ export default class AuthService {
     localStorage.removeItem('id_token')
     localStorage.removeItem('username')
     localStorage.removeItem('family_id')
+    console.log('logging out');
   }
 
   getProfile() {
