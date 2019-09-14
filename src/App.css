@@ -148,6 +148,7 @@ input[type=submit]:hover {
   display: flex;
   justify-content: space-between;
   margin: auto;
+  margin-top: 15px;
 }
 
 .main-nav-h1 {
@@ -158,11 +159,18 @@ input[type=submit]:hover {
   /* border-bottom: none; */
 }
 
+.main-nav-active {
+  background-color: var(--accent-teal);
+  color: white;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
 .main-nav-h1:hover {
   color: var(--btn-hover);
 }
 
-.nav-list {
+/* .nav-list {
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -172,11 +180,11 @@ input[type=submit]:hover {
 
 .nav-link {
   color: black;
-}
+} */
 
-.active-nav {
+/* .active-nav {
   color: blue;
-}
+} */
 
 @keyframes App-logo-spin {
   from {

@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import '../App.css'
 import AuthService from '../services/user.services'
-
+import Dashboard from './Dashboard'
 
 // api connection
 const api_url = 'https://behaver-api.herokuapp.com'
@@ -59,31 +59,35 @@ class Main extends Component {
         <div className='main-nav'>
           <NavLink
             className='main-nav-h1'
+            activeClassName='main-nav-active'
             to='/dashboard'>
             <h1>Dashboard</h1>
           </NavLink>
           <NavLink
             className='main-nav-h1'
+            activeClassName='main-nav-active'
             to='/tasksbehaviors'>
             <h1>Tasks & Behaviors</h1>
           </NavLink>
           <NavLink
             className='main-nav-h1'
+            activeClassName='main-nav-active'
             to='/cashins'>
             <h1>Cash Ins</h1>
           </NavLink>
           <NavLink
             className='main-nav-h1'
+            activeClassName='main-nav-active'
             to='/household'>
             <h1>Household</h1>
           </NavLink>
-          <Switch>
-            <Route path='/dashboard' />
-            <Route path='/tasksbehaviors'/>
-            <Route path='/cashins'/>
-            <Route path='/household'/>
-          </Switch>
         </div>
+        <Switch>
+          <Route path='/dashboard' component={Dashboard}/>
+          <Route path='/tasksbehaviors'/>
+          <Route path='/cashins'/>
+          <Route path='/household'/>
+        </Switch>
       </Router>
     )
   }
