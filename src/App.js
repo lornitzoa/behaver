@@ -2,21 +2,19 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   NavLink,
   Redirect,
   withRouter
 } from 'react-router-dom'
 
-import axios from 'axios'
+
 
 import Login from './components/Login'
 import Register from './components/Register'
 import Main from './components/Main'
 import AuthService from './services/user.services'
 
-// api connection
-const api_url = 'https://behaver-api.herokuapp.com'
+
 
 
 // authorization variable
