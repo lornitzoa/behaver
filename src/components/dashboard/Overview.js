@@ -19,7 +19,7 @@ class Overview extends Component {
               this.props.children.length > 0 ?
                 this.props.children.map((child, index) => {
                   return (
-                    <tr key={index} onClick={() => this.props.changeView(1)}>
+                    <tr key={index} onClick={() => this.props.changeView(child)}>
                       <td className="childNameCol childName">
                         {child.name}
                       </td>

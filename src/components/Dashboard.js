@@ -19,16 +19,19 @@ class Dashboard extends Component {
     }
   }
 
-  changeView = (childID) => {
-    console.log('clicked');
-    if(childID === null) {
+  // changes view bewteen dashboard overview and child view
+  changeView = (child) => {
+    if(child === null) {
       this.setState({
-        viewDashboard: true
+        viewDashboard: true,
+        childID: null,
+        childName: null
       })
     } else {
       this.setState({
         viewDashboard: false,
-        childID: childID
+        childID: child.member_id,
+        childName: child.name
       })
     }
   }
@@ -39,10 +42,26 @@ class Dashboard extends Component {
 
   render() {
     return (
-      this.state.viewDashboard ?
-      <Overview children={this.props.children} changeView={this.changeView}/>
-      :
-      <Child />
+      <Router>
+        <div>
+          {
+            this.state.viewDashboard ?
+            <Overview children={this.props.children} changeView={this.changeView}/>
+            :
+            <Redirect to={'/' + this.state.childName}/>
+          }
+          <Route
+            path={'/' + this.state.childName}
+            render={() =>
+              <Child
+                changeView={this.changeView}
+                childID={this.state.childID}
+                childName={this.state.childName}
+              />
+            }
+          />
+        </div>
+      </Router>
     )
   }
 }
