@@ -18,6 +18,7 @@ class Child extends Component {
   }
 
   componentDidMount() {
+
     if(localStorage.childState) {
       let childState = JSON.parse(localStorage.childState)
       for(let key in childState) {
@@ -89,13 +90,18 @@ class Child extends Component {
           </div>
           {
             this.state.opts === 'tasks-&-bx' ?
-            <Tasks_Bx/>
+            <Tasks_Bx
+              tasks={this.props.tasksAssignments}
+              behaviors={this.props.behaviorAssignments}
+            />
             :
             <div></div>
           }
           {
             this.state.opts === 'cashins' ?
-            <Cashins/>
+            <Cashins
+              cashins={this.props.reinforcementsAssignments}
+            />
             :
             <div></div>
           }

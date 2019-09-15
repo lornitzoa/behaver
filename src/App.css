@@ -2,7 +2,7 @@
 
 :root {
   --accent-teal: rgb(6, 159, 186);
-  --btn-hover: rgb(244, 166, 63);
+  --btn-hover: gold;
 }
 
 * {
@@ -223,12 +223,67 @@ td, th {
 }
 
 .opts-header > h2 {
-  width: 50%;
+  width: 40%;
 }
 
+/* Opts Components */
 
+.opt-container {
+  display: flex;
+}
+
+.opts-col {
+  width: 50%;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
 
 li {
   list-style: none;
-  text-align: left;
+  width: 70%;
+  margin: 5px auto;
+}
+
+.opt-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  color: var(--accent-teal);
+  border-radius: 50px;
+}
+
+.opts-h3, .opts-p {
+  margin: 0;
+  padding: 5px;
+}
+
+.opt-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+}
+
+.opt-btn {
+  font-size: 14px;
+  margin: 5px;
+  background-color: var(--accent-teal);
+  color: white;
+  font-weight: bold;
+}
+
+.far, .fas {
+  /* height: 40px; */
+  padding: 15px;
+  color: var(--accent-teal);
+}
+
+.far:hover, .fas:hover  {
+  color: gold;
+  cursor: pointer;
 }

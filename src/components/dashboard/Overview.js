@@ -9,13 +9,6 @@ class Overview extends Component {
 
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     children: this.props.children,
-  //     scores: this.props.scores
-  //   })
-  // }
-
   render() {
     return(
       <div>
