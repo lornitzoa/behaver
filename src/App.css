@@ -34,7 +34,7 @@
   background-color: var(--accent-teal);
 }
 
-.sub-header > button {
+button {
   width: 100px;
   height: 40px;
   font-size: 18px;
@@ -148,41 +148,74 @@ input[type=submit]:hover {
   display: flex;
   justify-content: space-between;
   margin: auto;
+  margin-top: 15px;
 }
 
 .main-nav-h1 {
   text-decoration: none;
-  /* width: 200px; */
+  font-size: 18px;
   padding: 10px;
   color: var(--accent-teal);
   /* border-bottom: none; */
+}
+
+.main-nav-active {
+  background-color: var(--accent-teal);
+  color: white;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .main-nav-h1:hover {
   color: var(--btn-hover);
 }
 
-.nav-list {
-  list-style: none;
+/* Dashboard Table */
+
+table {
+  width: 90%;
+  margin: auto;
+  padding: 25px 0;
+  background-color: var(--accent-teal);
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+}
+
+th {
+  font-size: 18px;
+}
+
+td, th {
+  font-size: 24px;
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+.childName:hover {
+  color: var(--btn-hover);
+  cursor: pointer;
+}
+
+/* Child Dashboard */
+
+.child-header {
+  background-color: var(--accent-teal);
+  width: 95%;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 0 auto;
+  height: 500px;
+  color: white;
+}
+
+.child-header {
   display: flex;
   justify-content: space-between;
-  width: 80%;
-  margin: auto;
+  /* margin-top: 20px; */
 }
 
-.nav-link {
-  color: black;
-}
+.child-header > h1 {
+  padding-left: 15px;
 
-.active-nav {
-  color: blue;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
