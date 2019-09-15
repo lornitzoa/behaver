@@ -11,11 +11,11 @@ class Overview extends Component {
         <table>
           <thead>
             <tr>
-              <th className='childNameCol'>CHILD</th>
-              <th>BEHAVIOR POINTS</th>
-              <th>TASKS COMPLETED</th>
-              <th>DAILY SCORE</th>
-              <th>STASHED CASH</th>
+              <th className='childNameCol'></th>
+              <th>BEHAVIOR<br/>POINTS</th>
+              <th>TASK<br/>POINTS</th>
+              <th>DAILY<br/>SCORE</th>
+              <th>STASHED<br/>Points</th>
             </tr>
           </thead>
           <tbody>

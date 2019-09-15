@@ -11,7 +11,10 @@ import Dashboard from './Dashboard'
 // api connection
 const api_url = 'https://behaver-api.herokuapp.com'
 
+if(performance.navigation.type == 1) {
+  console.log('this page is reloaded');
 
+}
 
 class Main extends Component {
   constructor(props) {
@@ -35,6 +38,21 @@ class Main extends Component {
     this.Auth = new AuthService()
     this.familyID = parseInt(localStorage.getItem('family_id'))
   }
+
+  preserveState = () => {
+    localStorage.setItem('state', this.state)
+    console.log(localStorage.state);
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.preserveState)
+  }
+
+  componentWillUnmount() {
+    this.preserveState()
+    window.removeEventListener('beforeunload', this.preserveState)
+  }
+
 
 
 

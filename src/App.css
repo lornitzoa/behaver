@@ -175,7 +175,7 @@ input[type=submit]:hover {
 table {
   width: 90%;
   margin: auto;
-  padding-top: 75px;
+  padding: 25px 0;
   background-color: var(--accent-teal);
   color: white;
   border-radius: 20px;
@@ -197,11 +197,25 @@ td, th {
   cursor: pointer;
 }
 
-/* Child Page */
+/* Child Dashboard */
+
+.child-header {
+  background-color: var(--accent-teal);
+  width: 95%;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 0 auto;
+  height: 500px;
+  color: white;
+}
+
 .child-header {
   display: flex;
   justify-content: space-between;
-  width: 95%;
-  margin: auto;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+}
+
+.child-header > h1 {
+  padding-left: 15px;
+
 }
