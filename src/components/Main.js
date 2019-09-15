@@ -9,12 +9,9 @@ import AuthService from '../services/user.services'
 import Dashboard from './Dashboard'
 
 // api connection
-const api_url = 'https://behaver-api.herokuapp.com'
+// const api_url = 'https://behaver-api.herokuapp.com'
+const api_url = 'http://localhost:3000'
 
-if(performance.navigation.type == 1) {
-  console.log('this page is reloaded');
-
-}
 
 class Main extends Component {
   constructor(props) {
@@ -40,17 +37,62 @@ class Main extends Component {
   }
 
   preserveState = () => {
-    localStorage.setItem('state', this.state)
-    console.log(localStorage.state);
+    localStorage.setItem('mainState', JSON.stringify(this.state))
+
   }
+
+
 
   componentDidMount() {
-    window.addEventListener('beforeunload', this.preserveState)
+      if (localStorage.mainState) {
+        let mainState = JSON.parse(localStorage.mainState)
+        for(let key in mainState) {
+          this.setState({
+            [key]: mainState[key]
+          })
+        }
+        window.addEventListener('beforeunload', (e) => {
+          e.preventDefault()
+          this.preserveState()
+
+        })
+        localStorage.removeItem('mainState')
+        // console.log(this.state);
+
+      } else {
+        this.dataManagement.getData('members')
+        this.dataManagement.getData('behaviors')
+        this.dataManagement.getData('tasks')
+        this.dataManagement.getData('reinforcements')
+        this.dataManagement.getData('behaviors/assignments')
+        this.dataManagement.getData('tasks/assignments')
+        this.dataManagement.getData('reinforcements/assignments')
+        this.dataManagement.getData('scores')
+        window.addEventListener('beforeunload', (e) => {
+          e.preventDefault()
+          this.preserveState()
+
+        })
+        this.setState({
+          familyName: localStorage.username.charAt(0).toUpperCase() + localStorage.username.slice(1)
+          // makes first letter of username upper case and rejoins string for dashboard header
+        })
+      }
+      this.setState({
+        loaded: true
+      })
+
+
+
   }
 
+
   componentWillUnmount() {
-    this.preserveState()
-    window.removeEventListener('beforeunload', this.preserveState)
+    // this.preserveState()
+    window.removeEventListener('beforeunload', (e) => {
+      e.preventDefault()
+      this.preserveState()
+    })
   }
 
 
@@ -62,8 +104,8 @@ class Main extends Component {
     //               GET DATA
     //////////////////////////////////////////////
     getData: (dataType) => {
-      console.log(dataType);
-      console.log(this.familyID);
+      // console.log(dataType);
+      // console.log(this.familyID);
       axios.get(`${api_url}/${dataType}/${this.familyID}`)
         .then(json => {
           // console.log(json.data);
@@ -84,20 +126,7 @@ class Main extends Component {
     //////////////////////////////////////////////
     //               DELETE DATA
     //////////////////////////////////////////////
-    deleteData: (dataType, id) => {
-      // console.log(dataType);
-      // console.log(id);
-      axios.delete(`${api_url}/${dataType}/${id}`)
-        .then(data => {
-          this.getData(dataType)
-        }).then(scores => {
-          console.log(dataType);
-          if(dataType === 'tasks/assignments') {
-            this.getData('scores')
-            // console.log('getting scores');
-          }
-        })
-    }
+
   }
 
   // triggers logout function and redirects to access page
@@ -108,21 +137,6 @@ class Main extends Component {
     })
   }
 
-  componentDidMount() {
-    this.dataManagement.getData('members')
-    this.dataManagement.getData('behaviors')
-    this.dataManagement.getData('tasks')
-    this.dataManagement.getData('reinforcements')
-    this.dataManagement.getData('behaviors/assignments')
-    this.dataManagement.getData('tasks/assignments')
-    this.dataManagement.getData('reinforcements/assignments')
-    this.dataManagement.getData('scores')
-
-    this.setState({
-      familyName: localStorage.username.charAt(0).toUpperCase() + localStorage.username.slice(1)
-      // makes first letter of username upper case and rejoins string for dashboard header
-    })
-  }
 
 
   render() {
@@ -189,7 +203,7 @@ class Main extends Component {
               </Switch>
             </div>
           :
-          <div></div>
+          <div>Not Loaded</div>
         }
 
       </Router>

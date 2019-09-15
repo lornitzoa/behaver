@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -23,7 +23,7 @@ let isAuthenticated = false
 
 
 // login and register landing component, with login function
-class Access extends React.Component {
+class Access extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,6 +31,8 @@ class Access extends React.Component {
     }
     this.Auth = new AuthService()
   }
+
+  
 
   login = (username, password) => {
     this.Auth.login(username, password)

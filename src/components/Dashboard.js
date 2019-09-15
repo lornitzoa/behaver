@@ -38,9 +38,6 @@ class Dashboard extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log(this.props.scores);
-  }
 
   render() {
     return (
@@ -48,11 +45,7 @@ class Dashboard extends Component {
         <div>
           {
             this.state.viewDashboard ?
-            <Overview
-              children={this.props.children}
-              changeView={this.changeView}
-              scores={this.props.scores}
-            />
+            <Redirect to='/dashboard'/>
             :
             <Redirect to={'/' + this.state.childName}/>
           }
@@ -68,6 +61,16 @@ class Dashboard extends Component {
               />
             }
           />
+          <Route
+            path='/dashboard'
+            render={() =>
+              <Overview
+                children={this.props.children}
+                changeView={this.changeView}
+                scores={this.props.scores}
+              />
+            }
+           />
         </div>
       </Router>
     )

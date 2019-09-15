@@ -4,6 +4,17 @@ import React, { Component } from 'react'
 
 
 class Overview extends Component {
+  constructor(props) {
+    super(props)
+
+  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     children: this.props.children,
+  //     scores: this.props.scores
+  //   })
+  // }
 
   render() {
     return(
