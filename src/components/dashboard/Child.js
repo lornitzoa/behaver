@@ -18,9 +18,26 @@ class Child extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.tasksAssignments);
-    console.log(this.props.behaviorAssignments);
-    console.log(this.props.reinforcementsAssignments);
+    if(localStorage.childState) {
+      let childState = JSON.parse(localStorage.childState)
+      for(let key in childState) {
+        this.setState({
+          [key]: childState[key]
+        })
+      }
+    }
+    window.addEventListener('beforeunload', (e) => {
+      e.preventDefault()
+      this.props.preserveState('childState', this.state)
+    })
+    localStorage.removeItem('childState')
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', (e) => {
+      e.preventDefault()
+      this.props.preserveState('childState', this.state)
+    })
   }
 
   optsSelect = (opts) => {
