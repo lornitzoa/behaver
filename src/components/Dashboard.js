@@ -5,6 +5,7 @@ import {
   NavLink,
   Redirect
 } from 'react-router-dom'
+import history from '../history'
 
 
 import Overview from './dashboard/Overview'
@@ -28,6 +29,7 @@ class Dashboard extends Component {
         childID: null,
         childName: null
       })
+      history.push('/dashboard')
     } else {
       this.setState({
         viewDashboard: false,
@@ -71,7 +73,11 @@ class Dashboard extends Component {
         <div>
           {
             this.state.viewDashboard ?
-            <Redirect to='/dashboard'/>
+            <Overview
+              children={this.props.children}
+              changeView={this.changeView}
+              scores={this.props.scores}
+            />
             :
             <Redirect to={'/dashboard/' + this.state.childName}/>
           }
@@ -83,20 +89,11 @@ class Dashboard extends Component {
                 childID={this.state.childID}
                 childName={this.state.childName}
                 dataManagement={this.props.dataManagement}
-
+                scores={this.props.scores.filter(child => child.member_id === this.state.childID)}
               />
             }
           />
-          <Route
-            path='/dashboard'
-            render={() =>
-              <Overview
-                children={this.props.children}
-                changeView={this.changeView}
-                scores={this.props.scores}
-              />
-            }
-           />
+
         </div>
       </Router>
     )

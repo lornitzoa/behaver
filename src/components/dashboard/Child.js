@@ -12,7 +12,7 @@ class Child extends Component {
   }
 
   componentDidMount() {
-
+    console.log(this.props.scores);
   }
 
 
@@ -24,7 +24,19 @@ class Child extends Component {
           <button onClick={() => this.props.changeView(null)}>Back</button>
         </div>
         <div className='score-board'>
+          <table>
+            <thead>
+              <tr>
+                <td>Tasks Completed</td>
+                <td>Bonus Tasks Completed</td>
+                <td>Task Points Earned</td>
+                <td>Behavior Points Earned</td>
+                <td>Total Points Earned</td>
+                <td>Stashed Cash</td>
+              </tr>
+            </thead>
 
+          </table>
         </div>
       </div>
     )

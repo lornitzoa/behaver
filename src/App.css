@@ -199,13 +199,12 @@ td, th {
 
 /* Child Dashboard */
 
-.child-header {
+.child-dashboard {
   background-color: var(--accent-teal);
   width: 95%;
   padding: 10px;
   border-radius: 20px;
   margin: 0 auto;
-  height: 500px;
   color: white;
 }
 
