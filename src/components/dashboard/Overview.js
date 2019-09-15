@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
+
+
+
 class Overview extends Component {
+
   render() {
     return(
       <div>
@@ -23,10 +27,10 @@ class Overview extends Component {
                       <td className="childNameCol childName">
                         {child.name}
                       </td>
-                      <td>data</td>
-                      <td>data</td>
-                      <td>data</td>
-                      <td>data</td>
+                      <td>{this.props.scores[index].bx_points_earned}</td>
+                      <td>{this.props.scores[index].task_points_earned}</td>
+                      <td>{this.props.scores[index].total_points_earned}</td>
+                      <td>{this.props.scores[index].stashed_cash}</td>
                     </tr>
 
                   )

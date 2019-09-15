@@ -33,11 +33,13 @@ class Dashboard extends Component {
         childID: child.member_id,
         childName: child.name
       })
+      localStorage.setItem('childID', child.member_id)
+      localStorage.setItem('childName', child.name)
     }
   }
 
   componentDidMount() {
-    console.log(this.props.children)
+    console.log(this.props.scores);
   }
 
   render() {
@@ -46,7 +48,11 @@ class Dashboard extends Component {
         <div>
           {
             this.state.viewDashboard ?
-            <Overview children={this.props.children} changeView={this.changeView}/>
+            <Overview
+              children={this.props.children}
+              changeView={this.changeView}
+              scores={this.props.scores}
+            />
             :
             <Redirect to={'/' + this.state.childName}/>
           }
@@ -57,6 +63,8 @@ class Dashboard extends Component {
                 changeView={this.changeView}
                 childID={this.state.childID}
                 childName={this.state.childName}
+                dataManagement={this.props.dataManagement}
+
               />
             }
           />

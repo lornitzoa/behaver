@@ -34,7 +34,7 @@
   background-color: var(--accent-teal);
 }
 
-.sub-header > button {
+button {
   width: 100px;
   height: 40px;
   font-size: 18px;
@@ -153,7 +153,7 @@ input[type=submit]:hover {
 
 .main-nav-h1 {
   text-decoration: none;
-  font-size: 26px;
+  font-size: 18px;
   padding: 10px;
   color: var(--accent-teal);
   /* border-bottom: none; */
@@ -183,11 +183,11 @@ table {
 }
 
 th {
-  font-size: 32px;
+  font-size: 18px;
 }
 
 td, th {
-  font-size: 36px;
+  font-size: 24px;
   padding: 20px 0;
   font-weight: bold;
 }
@@ -195,4 +195,13 @@ td, th {
 .childName:hover {
   color: var(--btn-hover);
   cursor: pointer;
+}
+
+/* Child Page */
+.child-header {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
 }

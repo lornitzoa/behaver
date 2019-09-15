@@ -21,6 +21,7 @@ import AuthService from './services/user.services'
 let isAuthenticated = false
 
 
+
 // login and register landing component, with login function
 class Access extends React.Component {
   constructor(props) {
@@ -118,6 +119,7 @@ const AuthButton = withRouter(({ history }) => (
 
 // main app component
 export default function App () {
+
   return (
     <Router>
       <div>
