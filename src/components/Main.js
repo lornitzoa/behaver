@@ -19,6 +19,7 @@ class Main extends Component {
     this.state = {
       // for preventing loading of page until all data has been pulled
       loaded: false,
+      active: null,
       // for dashboard header
       familyName: localStorage.username,
       redirectToReferrer: false,
@@ -37,8 +38,10 @@ class Main extends Component {
   }
 
   // Saves state to local storage on page refresh or unload for restting on reloading
-  preserveState = (key) => {
-    localStorage.setItem(key, JSON.stringify(this.state))
+  preserveState = (key, state) => {
+    localStorage.setItem(key, JSON.stringify(state))
+    console.log(localStorage[key]);
+    // console.log(e);
   }
 
   componentDidMount() {
@@ -52,7 +55,7 @@ class Main extends Component {
         }
         window.addEventListener('beforeunload', (e) => {
           e.preventDefault()
-          this.preserveState('mainState')
+          this.preserveState('mainState', this.state)
         })
         localStorage.removeItem('mainState')
         // console.log(this.state);
@@ -67,7 +70,7 @@ class Main extends Component {
         this.dataManagement.getData('scores')
         window.addEventListener('beforeunload', (e) => {
           e.preventDefault()
-          this.preserveState('mainState')
+          this.preserveState('mainState', this.state)
         })
         this.setState({
           familyName: localStorage.username.charAt(0).toUpperCase() + localStorage.username.slice(1)
@@ -134,7 +137,13 @@ class Main extends Component {
 
   render() {
     const { from } = this.props.location || { from: { pathname: '/' } }
-
+    const active = (match, location) => {
+      if(!match) {
+        return false
+      } else {
+        return true
+      }
+    }
     if (this.state.redirectToReferrer === true) {
       return <Redirect to={from} />
     }
@@ -154,24 +163,28 @@ class Main extends Component {
               <div className='main-nav'>
                 <NavLink
                   className='main-nav-h1'
+                  isActive={active}
                   activeClassName='main-nav-active'
                   to='/dashboard'>
                   <h1>Dashboard</h1>
                 </NavLink>
                 <NavLink
                   className='main-nav-h1'
+                  isActive={active}
                   activeClassName='main-nav-active'
                   to='/tasksbehaviors'>
                   <h1>Tasks & Behaviors</h1>
                 </NavLink>
                 <NavLink
                   className='main-nav-h1'
+                  isActive={active}
                   activeClassName='main-nav-active'
                   to='/cashins'>
                   <h1>Cash Ins</h1>
                 </NavLink>
                 <NavLink
                   className='main-nav-h1'
+                  isActive={active}
                   activeClassName='main-nav-active'
                   to='/household'>
                   <h1>Household</h1>

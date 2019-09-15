@@ -16,6 +16,7 @@ class Dashboard extends Component {
     this.state = {
       viewDashboard: true,
       childID: null,
+      childName: null,
     }
   }
 
@@ -38,6 +39,31 @@ class Dashboard extends Component {
 
 
 
+  componentDidMount() {
+
+    if(localStorage.dashState) {
+      let dashState = JSON.parse(localStorage.dashState)
+      for(let key in dashState) {
+        this.setState({
+          [key]: dashState[key]
+        })
+      }
+    }
+    window.addEventListener('beforeunload', (e) => {
+      e.preventDefault()
+      this.props.preserveState('dashState', this.state)
+    })
+    localStorage.removeItem('dashState')
+
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', (e) => {
+      e.preventDefault()
+      this.props.preserveState('dashState', this.state)
+    })
+  }
+
 
   render() {
     return (
@@ -47,10 +73,10 @@ class Dashboard extends Component {
             this.state.viewDashboard ?
             <Redirect to='/dashboard'/>
             :
-            <Redirect to={'/' + this.state.childName}/>
+            <Redirect to={'/dashboard/' + this.state.childName}/>
           }
           <Route
-            path={'/' + this.state.childName}
+            path={'/dashboard/' + this.state.childName}
             render={() =>
               <Child
                 changeView={this.changeView}
