@@ -2,7 +2,8 @@ import decode from 'jwt-decode'
 
 export default class AuthService {
   constructor(domain) {
-    this.domain = 'https://behaver-api.herokuapp.com' // API server domain
+    // this.domain = 'https://behaver-api.herokuapp.com' // API server domain
+    this.domain = 'http://localhost:3000'
     this.fetch = this.fetch.bind(this) // React binding
     this.login = this.login.bind(this)
     this.getProfile = this.getProfile.bind(this)
@@ -70,6 +71,7 @@ export default class AuthService {
   logout() {
     // clear local storage and eliminate auth token
     localStorage.clear()
+    localStorage.removeItem('mainState')
   }
 
   getProfile() {
@@ -95,8 +97,7 @@ export default class AuthService {
     return fetch(url, {
       headers,
       ...options
-    }).then(console.log(url))
-      .then(res => res.json())
+    }).then(res => res.json())
 
     }
 
