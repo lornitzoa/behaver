@@ -90,6 +90,9 @@ class Dashboard extends Component {
                 childName={this.state.childName}
                 dataManagement={this.props.dataManagement}
                 scores={this.props.scores.filter(child => child.member_id === this.state.childID)}
+                tasksAssignments={this.props.tasksAssignments.filter(task => task.child_id === this.state.childID)}
+                behaviorAssignments={this.props.behaviorAssignments.filter(bx => bx.child_id === this.state.childID)}
+                reinforcementsAssignments={this.props.reinforcementsAssignments.filter(rx => rx.child_id === this.state.childID)}
               />
             }
           />

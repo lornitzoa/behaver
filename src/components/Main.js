@@ -199,7 +199,7 @@ class Main extends Component {
                       dataManagement={this.dataManagement}
                       scores={this.state.scores}
                       tasksAssignments={this.state.tasksassignments}
-                      behaveriorAssignments={this.state.behaviorsassignments}
+                      behaviorAssignments={this.state.behaviorsassignments}
                       reinforcementsAssignments={this.state.reinforcementsassignments}
                       preserveState={this.preserveState}
                     />

@@ -192,7 +192,7 @@ td, th {
   font-weight: bold;
 }
 
-.childName:hover {
+.childName:hover, .opts-header > h2:hover {
   color: var(--btn-hover);
   cursor: pointer;
 }
@@ -216,5 +216,19 @@ td, th {
 
 .child-header > h1 {
   padding-left: 15px;
+}
 
+.opts-header {
+  display: flex;
+}
+
+.opts-header > h2 {
+  width: 50%;
+}
+
+
+
+li {
+  list-style: none;
+  text-align: left;
 }

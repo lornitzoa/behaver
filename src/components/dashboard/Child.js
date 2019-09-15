@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Redirect
+} from 'react-router-dom'
+
+import Tasks_Bx from './Tasks_Bx'
+import Cashins from './Cashins'
 
 class Child extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasksassignments: [],
-      behaviorsassignments:[],
-      reinforcementsassignments: [],
-      scores: [],
+      opts: null
     }
   }
 
   componentDidMount() {
-    console.log(this.props.scores);
+    console.log(this.props.tasksAssignments);
+    console.log(this.props.behaviorAssignments);
+    console.log(this.props.reinforcementsAssignments);
+  }
+
+  optsSelect = (opts) => {
+    this.setState({
+      opts: opts
+    })
   }
 
 
@@ -35,8 +49,39 @@ class Child extends Component {
                 <td>Stashed Cash</td>
               </tr>
             </thead>
-
+            <tbody>
+              <tr>
+                <td>{this.props.scores[0].req_tasks_complete}</td>
+                <td>{this.props.scores[0].bonus_tasks_complete}</td>
+                <td>{this.props.scores[0].task_points_earned}</td>
+                <td>{this.props.scores[0].bx_points_earned}</td>
+                <td>{this.props.scores[0].total_points_earned}</td>
+                <td>{this.props.scores[0].stashed_cash}</td>
+              </tr>
+            </tbody>
           </table>
+        </div>
+        <div>
+          <div className='opts-header'>
+            <h2 onClick={() => {
+              this.optsSelect('tasks-&-bx')
+            }}>Tasks & Behaviors</h2>
+            <h2 onClick={() => {
+              this.optsSelect('cashins')
+            }}>Cash Ins</h2>
+          </div>
+          {
+            this.state.opts === 'tasks-&-bx' ?
+            <Tasks_Bx/>
+            :
+            <div></div>
+          }
+          {
+            this.state.opts === 'cashins' ?
+            <Cashins/>
+            :
+            <div></div>
+          }
         </div>
       </div>
     )
