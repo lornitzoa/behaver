@@ -33,10 +33,10 @@ class Dashboard extends Component {
         childID: child.member_id,
         childName: child.name
       })
-      localStorage.setItem('childID', child.member_id)
-      localStorage.setItem('childName', child.name)
     }
   }
+
+
 
 
   render() {

@@ -36,14 +36,13 @@ class Main extends Component {
     this.familyID = parseInt(localStorage.getItem('family_id'))
   }
 
-  preserveState = () => {
-    localStorage.setItem('mainState', JSON.stringify(this.state))
-
+  // Saves state to local storage on page refresh or unload for restting on reloading
+  preserveState = (key) => {
+    localStorage.setItem(key, JSON.stringify(this.state))
   }
 
-
-
   componentDidMount() {
+      // if localstorage has a mainState key, use it to set state from that rather than calling the db
       if (localStorage.mainState) {
         let mainState = JSON.parse(localStorage.mainState)
         for(let key in mainState) {
@@ -53,12 +52,10 @@ class Main extends Component {
         }
         window.addEventListener('beforeunload', (e) => {
           e.preventDefault()
-          this.preserveState()
-
+          this.preserveState('mainState')
         })
         localStorage.removeItem('mainState')
         // console.log(this.state);
-
       } else {
         this.dataManagement.getData('members')
         this.dataManagement.getData('behaviors')
@@ -70,8 +67,7 @@ class Main extends Component {
         this.dataManagement.getData('scores')
         window.addEventListener('beforeunload', (e) => {
           e.preventDefault()
-          this.preserveState()
-
+          this.preserveState('mainState')
         })
         this.setState({
           familyName: localStorage.username.charAt(0).toUpperCase() + localStorage.username.slice(1)
@@ -81,9 +77,6 @@ class Main extends Component {
       this.setState({
         loaded: true
       })
-
-
-
   }
 
 
@@ -195,6 +188,7 @@ class Main extends Component {
                       tasksAssignments={this.state.tasksassignments}
                       behaveriorAssignments={this.state.behaviorsassignments}
                       reinforcementsAssignments={this.state.reinforcementsassignments}
+                      preserveState={this.preserveState}
                     />
                   }/>
                 <Route path='/tasksbehaviors'/>
